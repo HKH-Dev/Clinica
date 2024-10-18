@@ -1,14 +1,10 @@
 package co.edu.uniquindio.clinica.model.factory;
 
-import co.edu.uniquindio.clinica.ClinicaApplication;
 import co.edu.uniquindio.clinica.model.ClinicaPrincipal;
-import co.edu.uniquindio.clinica.servicio.ConverturaServicio;
-import co.edu.uniquindio.clinica.servicio.Servicio;
+import co.edu.uniquindio.clinica.model.servicio.Servicio;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Getter
@@ -17,6 +13,18 @@ import java.util.List;
 public class SuscripcionBasica implements Suscripcion {
     @Override
     public void coverturaServicio(Servicio servicio) {
+        ClinicaPrincipal clinica = new ClinicaPrincipal();
+        List<Servicio> listaServicios = clinica.getListaServiciosDisponibles();
+
+        for(Servicio servicioConsultar : listaServicios) {
+            if(servicioConsultar.getNombre().equals(servicio.getNombre())) {
+                servicio.setComplejidadServicios(servicioConsultar.getComplejidadServicios());
+                servicio.setPrecio(servicioConsultar.getPrecio());
+                System.out.println("Servicio encontrado: " + servicioConsultar.toString());
+                break;
+            }
+        }
+
         switch (servicio.getComplejidadServicios()) {
             case BAJA -> {
                 servicio.setPrecio(0);  // Free for basic subscription

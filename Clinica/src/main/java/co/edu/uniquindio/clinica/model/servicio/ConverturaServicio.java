@@ -1,4 +1,4 @@
-package co.edu.uniquindio.clinica.servicio;
+package co.edu.uniquindio.clinica.model.servicio;
 
 import lombok.Getter;
 

@@ -1,19 +1,16 @@
 package co.edu.uniquindio.clinica.model;
 
-import co.edu.uniquindio.clinica.TipoSuscripcion;
-import co.edu.uniquindio.clinica.model.factory.Suscripcion;
+import co.edu.uniquindio.clinica.model.factory.TipoSuscripcion;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
+@ToString
+
 public class Paciente {
     private String cedula;
     private String nombre;

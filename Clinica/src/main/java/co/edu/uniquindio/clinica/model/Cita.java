@@ -1,16 +1,16 @@
 package co.edu.uniquindio.clinica.model;
 
-import co.edu.uniquindio.clinica.servicio.Servicio;
+import co.edu.uniquindio.clinica.model.servicio.Servicio;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import java.time.LocalDate;
 
-@Setter
 @Getter
-@ToString
+@Setter
 @AllArgsConstructor
+@ToString
 
 public class Cita {
     private Paciente paciente;

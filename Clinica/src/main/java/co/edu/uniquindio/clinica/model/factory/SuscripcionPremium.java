@@ -1,7 +1,6 @@
 package co.edu.uniquindio.clinica.model.factory;
 
-import co.edu.uniquindio.clinica.servicio.ComplejidadServicios;
-import co.edu.uniquindio.clinica.servicio.Servicio;
+import co.edu.uniquindio.clinica.model.servicio.Servicio;
 
 public class SuscripcionPremium implements Suscripcion {
         @Override

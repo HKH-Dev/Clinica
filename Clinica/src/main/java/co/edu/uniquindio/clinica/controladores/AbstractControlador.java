@@ -1,18 +1,18 @@
 package co.edu.uniquindio.clinica.controladores;
 
-import co.edu.uniquindio.clinica.model.Clinica;
+import co.edu.uniquindio.clinica.model.ClinicaPrincipal;
 import lombok.Getter;
 
 
 
 public abstract class AbstractControlador {
     @Getter
-    private Clinica clinica;
+    private ClinicaPrincipal clinica;
 
 
 
 
-    public void inicializarClinica(Clinica clinica){
+    public void inicializarClinica(ClinicaPrincipal clinica){
         this.clinica = clinica;
     }
 
