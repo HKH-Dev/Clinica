@@ -1,6 +1,6 @@
 package co.edu.uniquindio.clinica.model.factory;
 
-import co.edu.uniquindio.clinica.model.ClinicaPrincipal;
+import co.edu.uniquindio.clinica.model.Clinica;
 import co.edu.uniquindio.clinica.model.servicio.Servicio;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +13,7 @@ import java.util.List;
 public class SuscripcionBasica implements Suscripcion {
     @Override
     public void coverturaServicio(Servicio servicio) {
-        ClinicaPrincipal clinica = new ClinicaPrincipal();
+        Clinica clinica = new Clinica();
         List<Servicio> listaServicios = clinica.getListaServiciosDisponibles();
 
         for(Servicio servicioConsultar : listaServicios) {

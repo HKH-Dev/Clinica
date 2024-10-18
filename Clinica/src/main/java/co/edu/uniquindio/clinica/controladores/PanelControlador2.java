@@ -1,6 +1,6 @@
 package co.edu.uniquindio.clinica.controladores;
 
-import co.edu.uniquindio.clinica.model.ClinicaPrincipal;
+import co.edu.uniquindio.clinica.model.Clinica;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,10 +24,10 @@ public class PanelControlador2 implements Initializable {
     @FXML
     private Tab tab4;
 
-    private final ClinicaPrincipal clinica;
+    private final Clinica clinica;
 
     public PanelControlador2() {
-        this.clinica = new ClinicaPrincipal(); // Se crea una única instancia de la clase Clinica
+        this.clinica = new Clinica(); // Se crea una única instancia de la clase Clinica
     }
 
 

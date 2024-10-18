@@ -13,18 +13,17 @@ import java.util.random.RandomGenerator;
 @Setter
 @Getter
 
-public class ClinicaPrincipal {
+public class Clinica {
     private List<Paciente> listaPacientes;
     private List<Servicio> listaServiciosDisponibles;
     private List<Cita> listaCitas;
     private List<Factura> listaFacturas;
 
-    public ClinicaPrincipal() {
+    public Clinica() {
         List<Paciente> listaPacientes = new ArrayList<>();
         List<Servicio> listaServiciosDisponibles = new ArrayList<>();
         List<Cita> listaCitas = new ArrayList<>();
         List<Factura> listaFacturas = new ArrayList<>();
-
     }
 
     public void registrarPaciente(String cedula, String nombre, String telefono, String email, TipoSuscripcion suscripcion){

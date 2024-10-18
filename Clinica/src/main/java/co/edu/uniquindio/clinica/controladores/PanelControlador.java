@@ -1,5 +1,5 @@
 package co.edu.uniquindio.clinica.controladores;
-import co.edu.uniquindio.clinica.model.ClinicaPrincipal;
+import co.edu.uniquindio.clinica.model.Clinica;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,41 +9,31 @@ import javafx.scene.layout.StackPane;
 public class PanelControlador {
     @FXML
     private StackPane panelPrincipal;
-    private final ClinicaPrincipal clinica;
-
+    private final Clinica clinica;
 
     public PanelControlador() {
-        this.clinica = new ClinicaPrincipal(); // Se crea una única instancia de la clase Clinica
+        this.clinica = new Clinica(); // Se crea una única instancia de la clase Clinica
     }
-
 
     public void mostrarRegistroPaciente(ActionEvent actionEvent) {
         Parent node = cargarPanel("/registroPaciente.fxml");
-
-
         // Se reemplaza el contenido del panel principal
         panelPrincipal.getChildren().setAll(node);
     }
-
 
     public void mostrarListaPacientes(ActionEvent actionEvent) {
         Parent node = cargarPanel("/listaPacientes.fxml");
-
-
         // Se reemplaza el contenido del panel principal
         panelPrincipal.getChildren().setAll(node);
     }
-
 
     public void mostrarRegistroCita(ActionEvent actionEvent) {
         //Completar
     }
 
-
     public void mostrarListaCitas(ActionEvent actionEvent) {
         //Completar
     }
-
 
     private Parent cargarPanel(String fxmlFile) {
         try {
@@ -56,10 +46,6 @@ public class PanelControlador {
         }
         return null;
     }
-
-
-
-
 }
 
 

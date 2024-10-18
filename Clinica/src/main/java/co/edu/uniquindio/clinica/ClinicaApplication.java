@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class ClinicaApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(ClinicaApplication.class.getResource(""));
+        FXMLLoader loader = new FXMLLoader(ClinicaApplication.class.getResource("/panel.fxml")); // Correct the path here
         Parent parent = loader.load();
 
         Scene scene = new Scene(parent);
@@ -22,8 +22,4 @@ public class ClinicaApplication extends Application {
     public static void main(String[] args) {
         launch(ClinicaApplication.class, args);
     }
-
-
-
-
 }
