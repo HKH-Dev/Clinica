@@ -1,13 +1,8 @@
 package co.edu.uniquindio.clinica.model.factory;
 
-import co.edu.uniquindio.clinica.model.Servicio;
+import co.edu.uniquindio.clinica.servicio.Servicio;
 
 public interface Suscripcion {
-//    void formatoConsulta();
-//
-//    void tipoServicio(Servicio servicio);
-//
-//
-
+ void coverturaServicio(Servicio servicio);
 
 }

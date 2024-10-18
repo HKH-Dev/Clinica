@@ -1,11 +1,11 @@
 package co.edu.uniquindio.clinica.model;
 
+import co.edu.uniquindio.clinica.servicio.Servicio;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import java.time.LocalDate;
-import java.util.List;
 
 @Setter
 @Getter

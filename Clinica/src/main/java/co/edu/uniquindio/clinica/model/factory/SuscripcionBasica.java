@@ -1,43 +1,34 @@
 package co.edu.uniquindio.clinica.model.factory;
 
-import co.edu.uniquindio.clinica.model.Servicio;
-import lombok.Builder;
+import co.edu.uniquindio.clinica.ClinicaApplication;
+import co.edu.uniquindio.clinica.model.ClinicaPrincipal;
+import co.edu.uniquindio.clinica.servicio.ConverturaServicio;
+import co.edu.uniquindio.clinica.servicio.Servicio;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Getter
 @Setter
+
 public class SuscripcionBasica implements Suscripcion {
-    Servicio servicioPrestado;
-    List<Servicio> Consulta;
-
-    public SuscripcionBasica(Servicio servicioPrestado) {
-        this.servicioPrestado = servicioPrestado;
+    @Override
+    public void coverturaServicio(Servicio servicio) {
+        switch (servicio.getComplejidadServicios()) {
+            case BAJA -> {
+                servicio.setPrecio(0);  // Free for basic subscription
+                System.out.println("El servicio es gratuito para Suscripción Básica.");
+            }
+            case MEDIA -> {
+                servicio.setPrecio(servicio.getPrecio() * 0.5);
+                System.out.println("El servicio tiene 50% de descuento para Suscripción Básica.");
+            }
+            case ALTA -> {
+                System.out.println("El servicio requiere el pago completo para Suscripción Básica.");
+            }
+        }
     }
-//
-//    @Override
-//    public void formatoConsulta() {
-//        Boolean asistio = null;
-//        LocalDate fechaConsulta = LocalDate.now();
-//        if(asistio){
-//            String motivoConsulta;
-//            String diagnostico;
-//            String tratamiento = servicioPrestado.getListaServiciosDisponibles();
-
-//        }
-
-
-//    }
-//    @Override
-//    public void tipoServicio(Servicio servicio) {
-//        System.out.println("Consulta");
-//    }
-
-
-
-
-
 }

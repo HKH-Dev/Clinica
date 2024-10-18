@@ -1,5 +1,7 @@
 package co.edu.uniquindio.clinica.model;
 
+import co.edu.uniquindio.clinica.servicio.Servicio;
+
 import java.util.List;
 
 public class Clinica {

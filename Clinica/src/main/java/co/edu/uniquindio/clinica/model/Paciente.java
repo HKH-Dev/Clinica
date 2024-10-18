@@ -1,5 +1,6 @@
 package co.edu.uniquindio.clinica.model;
 
+import co.edu.uniquindio.clinica.TipoSuscripcion;
 import co.edu.uniquindio.clinica.model.factory.Suscripcion;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,5 +19,5 @@ public class Paciente {
     private String nombre;
     private String telefono;
     private String email;
-    private Suscripcion tipoSuscripcion;
+    private TipoSuscripcion tipoSuscripcion;
 }
