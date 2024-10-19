@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class ClinicaApplication extends Application {
+    
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(ClinicaApplication.class.getResource("/panel.fxml")); // Correct the path here
@@ -15,7 +16,7 @@ public class ClinicaApplication extends Application {
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.setTitle("Clinica");
-        stage.setMaximized(true);
+//        stage.setMaximized(true);
         stage.show();
     }
 

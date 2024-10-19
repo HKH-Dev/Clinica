@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uniquindio.clinica.controladores.RegistroCitaControlador"
+            spacing="20.0">
+
+    <Label layoutX="27.0" layoutY="35.0" text="Identificación del paciente:" />
+    <TextField fx:id="txtIdentificacion" layoutX="100.0" layoutY="30.0" minWidth="270.0" />
+
+
+</VBox>

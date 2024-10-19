@@ -13,6 +13,7 @@ import java.util.random.RandomGenerator;
 @Setter
 @Getter
 
+
 public class Clinica {
     private List<Paciente> listaPacientes;
     private List<Servicio> listaServiciosDisponibles;

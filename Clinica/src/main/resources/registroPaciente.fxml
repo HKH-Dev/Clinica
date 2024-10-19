@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
@@ -9,28 +8,32 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       spacing="20.0"
-      fx:controller="co.edu.uniquindio.clinica.controladores.ListaPacientesControlador">
+      fx:controller="co.edu.uniquindio.clinica.controladores.RegistroPacienteControlador">
 
 
-    <Label text="Lista de Pacientes" textFill="#0f0f0f">
-        <font>
-            <Font size="20.0"/>
-        </font>
-    </Label>
+    <Label layoutX="27.0" layoutY="35.0" text="Cedula:" />
+    <TextField fx:id="txtCedula" layoutX="100.0" layoutY="30.0" minWidth="270.0" />
+
+    <Label layoutX="27.0" layoutY="85.0" text="Nombre:" />
+    <TextField fx:id="txtNombre" layoutX="100.0" layoutY="80.0" minWidth="270.0" />
+
+    <Label layoutX="27.0" layoutY="135.0" text="Telefono:" />
+    <TextField fx:id="txtTelefono" layoutX="100.0" layoutY="130.0" minWidth="270.0" />
+
+    <Label layoutX="27.0" layoutY="185.0" text="Email:" />
+    <TextField fx:id="txtEmail" layoutX="100.0" layoutY="180.0" minWidth="270.0" />
+
+    <Label layoutX="27.0" layoutY="235.0" text="Tipo de Suscripcion:"/>
+    <ComboBox fx:id="txtSuscripcion" layoutX="120.0" layoutY="80.0" minWidth="270.0" />
 
 
-    <TableView fx:id="tablaPacientes" VBox.vgrow="ALWAYS" >
-        <columns>
-            <TableColumn text="Identificación" />
-            <TableColumn text="Nombre" />
-            <TableColumn text="Teléfono"  />
-            <TableColumn text="Correo" />
-            <TableColumn text="Suscripción" />
-        </columns>
-        <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-        </columnResizePolicy>
-    </TableView>
+    <Label layoutX="27.0" layoutY="135.0" text="Nota:" />
+    <TextArea fx:id="txtNota" layoutX="100.0" layoutY="130.0" prefHeight="100.0" prefWidth="270.0" />
 
+
+    <Button fx:id="btnNuevoPaciente" layoutX="150.0" layoutY="280.0" text="Crear nueva nota" />
+
+
+    <Button fx:id="btnGuardar" layoutX="250.0" layoutY="280.0" text="Guardar" />
 
 </VBox>

@@ -26,13 +26,16 @@ public class PanelControlador {
         // Se reemplaza el contenido del panel principal
         panelPrincipal.getChildren().setAll(node);
     }
-
     public void mostrarRegistroCita(ActionEvent actionEvent) {
-        //Completar
+        Parent node = cargarPanel("/registroCita.fxml");
+        // Se reemplaza el contenido del panel principal
+        panelPrincipal.getChildren().setAll(node);
     }
 
     public void mostrarListaCitas(ActionEvent actionEvent) {
-        //Completar
+        Parent node = cargarPanel("/listaCitas.fxml");
+        // Se reemplaza el contenido del panel principal
+        panelPrincipal.getChildren().setAll(node);
     }
 
     private Parent cargarPanel(String fxmlFile) {
