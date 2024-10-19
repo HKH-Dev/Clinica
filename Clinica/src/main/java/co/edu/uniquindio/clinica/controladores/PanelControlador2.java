@@ -10,33 +10,27 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class PanelControlador2 implements Initializable {
-
-
     @FXML
     private Tab tab1;
-
     @FXML
     private Tab tab2;
-
     @FXML
     private Tab tab3;
-
     @FXML
     private Tab tab4;
-
     private final Clinica clinica;
 
     public PanelControlador2() {
         this.clinica = new Clinica(); // Se crea una única instancia de la clase Clinica
     }
 
-
-
     @Override
     public void initialize (URL location, ResourceBundle resources) {
         try{
             cargarTab(tab1, "/registroPaciente.fxml");
             cargarTab(tab2, "/listaPacientes.fxml");
+            cargarTab(tab3, "/registroCita.fxml");
+            cargarTab(tab4, "/listaCitas.fxml");
             //Agregar los otros tabs…
         } catch (Exception e) {
             e.printStackTrace();

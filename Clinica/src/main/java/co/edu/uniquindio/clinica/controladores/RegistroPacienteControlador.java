@@ -28,6 +28,7 @@ public class RegistroPacienteControlador extends AbstractControlador implements 
     private TextField txtEmail;
     @FXML
     private ComboBox<String> txtSuscripcion;
+
     private final Clinica clinica;
 
     public RegistroPacienteControlador() {
@@ -37,20 +38,18 @@ public class RegistroPacienteControlador extends AbstractControlador implements 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("RegistroPacienteControlador.initialize");
-        txtSuscripcion.setItems(FXCollections.observableArrayList());
+        txtSuscripcion.setItems(FXCollections.observableArrayList(TipoSuscripcion.valueOf("BASICA").toString(), TipoSuscripcion.valueOf("PREMIUM").toString()));
     }
 
-    public void registrarPaciente(ActionEvent e) {
-       try{
-           clinica.registrarPaciente(txtCedula.getText(), txtNombre.getText(), txtTelefono.getText(), txtEmail.getText(), TipoSuscripcion.valueOf(txtSuscripcion.getValue()));
-       }catch(Exception ex){
-           mostrarAlerta(ex.getMessage(), Alert.AlertType.ERROR);}
-    }
-
-//    @FXML
-//    public void cancelarRegistro() {
-//        System.out.println("RegistroPacienteControlador.cancelarRegistro");
-//    }
+        public void registrarPaciente(ActionEvent e) {
+            try {
+                clinica.registrarPaciente(txtCedula.getText(), txtNombre.getText(), txtTelefono.getText(), txtEmail.getText(), TipoSuscripcion.valueOf(txtSuscripcion.getValue()));
+                limpiarCampos();
+                mostrarAlerta("Paciente registrado correctamente", Alert.AlertType.INFORMATION);
+            } catch (Exception ex) {
+                mostrarAlerta(ex.getMessage(), Alert.AlertType.ERROR);
+            }
+        }
 
     @Override
     public void inicializarClinica(Clinica clinica) {
@@ -66,5 +65,12 @@ public class RegistroPacienteControlador extends AbstractControlador implements 
         alert.show();
     }
 
+    private void limpiarCampos(){
+        txtCedula.clear();
+        txtNombre.clear();
+        txtTelefono.clear();
+        txtEmail.clear();
+        txtSuscripcion.setValue(null);
+    }
 
 }
