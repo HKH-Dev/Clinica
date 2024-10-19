@@ -5,6 +5,8 @@ import co.edu.uniquindio.clinica.model.servicio.ComplejidadServicios;
 import co.edu.uniquindio.clinica.model.servicio.Servicio;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.random.RandomGenerator;
 
 @Setter
 @Getter
-
+@ToString
 
 public class Clinica {
     private List<Paciente> listaPacientes;

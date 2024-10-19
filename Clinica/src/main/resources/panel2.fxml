@@ -36,5 +36,17 @@
         </tabs>
     </TabPane>
 
+    <TableView fx:id="tablaNotas" HBox.hgrow="ALWAYS" >
+        <columns>
+            <TableColumn fx:id="colTitulo" prefWidth="${tablaNotas.width*0.2}" text="Título" />
+            <TableColumn fx:id="colCategoria" prefWidth="${tablaNotas.width*0.2}" text="Categoría" />
+            <TableColumn fx:id="colTexto" prefWidth="${tablaNotas.width*0.2}" text="Nota" />
+            <TableColumn fx:id="colFecha" prefWidth="${tablaNotas.width*0.2}" text="Fecha creación" />
+            <TableColumn fx:id="colRecordatorio" prefWidth="${tablaNotas.width*0.2}" text="Recordatorio" />
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+        </columnResizePolicy>
+    </TableView>
 
 </VBox>
