@@ -16,7 +16,7 @@ public class ClinicaApplication extends Application {
         Scene scene = new Scene(parent);
         stage.setScene(scene);
         stage.setTitle("Clinica");
-//        stage.setMaximized(true);
+        stage.setMaximized(true);
         stage.show();
     }
 

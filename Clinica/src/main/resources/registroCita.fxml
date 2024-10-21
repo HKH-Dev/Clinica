@@ -16,7 +16,7 @@
     <TextField fx:id="txtId" layoutX="100.0" layoutY="30.0" minWidth="270.0" />
 
     <Label layoutX="27.0" layoutY="85.0" text="Paciente:" />
-    <TextField fx:id="txtPaciente" layoutX="100.0" layoutY="80.0" minWidth="270.0" />
+    <TextField fx:id="txtPaciente" layoutX="100.0" layoutY="80.0" minWidth="270.0" editable="false"/>
 
     <Label layoutX="27.0" layoutY="135.0" text="Fecha:" />
     <DatePicker fx:id="txtFecha" layoutX="100.0" layoutY="130.0" minWidth="270.0" />
@@ -27,7 +27,7 @@
     <Label layoutX="27.0" layoutY="235.0" text="Factura:"/>
     <TextField fx:id="txtFactura" layoutX="100.0" layoutY="130.0" minWidth="270.0" />
 
-    <Button fx:id="btnNuevoCita" layoutX="150.0" layoutY="280.0" text="Crear nueva Cita" />
+    <Button fx:id="btnNuevoCita" layoutX="150.0" layoutY="280.0" text="Crear nueva Cita" onAction="#registrarCita" />
 
     <Button fx:id="btnGuardar" layoutX="250.0" layoutY="280.0" text="Guardar" />
 

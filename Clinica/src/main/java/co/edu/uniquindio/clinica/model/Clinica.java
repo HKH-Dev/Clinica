@@ -3,9 +3,7 @@ package co.edu.uniquindio.clinica.model;
 import co.edu.uniquindio.clinica.model.factory.TipoSuscripcion;
 import co.edu.uniquindio.clinica.model.servicio.ComplejidadServicios;
 import co.edu.uniquindio.clinica.model.servicio.Servicio;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,16 +15,25 @@ import java.util.random.RandomGenerator;
 @ToString
 
 public class Clinica {
-    private List<Paciente> listaPacientes;
-    private List<Servicio> listaServiciosDisponibles;
+    private  List<Paciente> listaPacientes;
+    private  List<Servicio> listaServiciosDisponibles;
     private List<Cita> listaCitas;
     private List<Factura> listaFacturas;
+    private static  Clinica clinica;
 
     public Clinica() {
-        List<Paciente> listaPacientes = new ArrayList<>();
-        List<Servicio> listaServiciosDisponibles = new ArrayList<>();
-        List<Cita> listaCitas = new ArrayList<>();
-        List<Factura> listaFacturas = new ArrayList<>();
+        this.listaPacientes = new ArrayList<>();
+        this.listaServiciosDisponibles = new ArrayList<>();
+        this.listaCitas = new ArrayList<>();
+        this.listaFacturas = new ArrayList<>();
+    }
+
+
+    public static Clinica getInstance(){
+        if (clinica == null){
+            clinica = new Clinica();
+        }
+        return clinica;
     }
 
     public void registrarPaciente(String cedula, String nombre, String telefono, String email, TipoSuscripcion suscripcion){

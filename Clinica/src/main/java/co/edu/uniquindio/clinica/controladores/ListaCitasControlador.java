@@ -15,8 +15,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class ListaCitasControlador {
-//        extends AbstractControlador implements Initializable {
+public class ListaCitasControlador extends AbstractControlador{
     @FXML
     private StackPane CitasPanel;
     @FXML

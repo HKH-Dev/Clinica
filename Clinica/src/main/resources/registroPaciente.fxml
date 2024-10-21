@@ -27,9 +27,7 @@
     <ComboBox fx:id="txtSuscripcion" layoutX="120.0" layoutY="80.0" minWidth="270.0" />
 
 
-    <Button fx:id="btnNuevoPaciente" layoutX="150.0" layoutY="280.0" text="Crear nuevo Paciente" />
+    <Button fx:id="btnNuevoPaciente" layoutX="150.0" layoutY="280.0" text="Crear nuevo Paciente"  onAction="#registrarPaciente"/>
 
-
-    <Button fx:id="btnGuardar" layoutX="250.0" layoutY="280.0" text="Guardar" />
 
 </VBox>
