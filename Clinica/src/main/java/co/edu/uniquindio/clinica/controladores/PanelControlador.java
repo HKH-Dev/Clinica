@@ -26,6 +26,7 @@ public class PanelControlador {
         // Se reemplaza el contenido del panel principal
         panelPrincipal.getChildren().setAll(node);
     }
+
     public void mostrarRegistroCita(ActionEvent actionEvent) {
         Parent node = cargarPanel("/registroCita.fxml");
         // Se reemplaza el contenido del panel principal
@@ -43,7 +44,7 @@ public class PanelControlador {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             Parent node = loader.load();
-            ((AbstractControlador)loader.getController()).inicializarClinica(clinica);
+            ((AbstractControlador) loader.getController()).inicializarClinica(clinica);
             return node;
         } catch (Exception e) {
             e.printStackTrace();

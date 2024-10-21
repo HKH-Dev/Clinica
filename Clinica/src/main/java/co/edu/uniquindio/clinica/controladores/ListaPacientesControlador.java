@@ -47,6 +47,7 @@ public class ListaPacientesControlador extends AbstractControlador implements In
     private TableColumn<Paciente, String> colSuscripcion;
     @FXML
     private Button btnBorrarPaciente;
+
     Clinica clinica = Clinica.getInstance();
     private final ObservableList<Paciente> pacientesObservable = FXCollections.observableArrayList();
     private final List<Node>camposDatos = new ArrayList<>();

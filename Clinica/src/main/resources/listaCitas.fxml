@@ -5,12 +5,14 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
 <?import javafx.scene.text.Font?>
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="co.edu.uniquindio.clinica.controladores.ListaCitasControlador"
-      prefHeight="400.0" prefWidth="600.0">
+
+<VBox spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.clinica.controladores.ListaCitasControlador">
+
+<!--<VBox xmlns="http://javafx.com/javafx"-->
+<!--      xmlns:fx="http://javafx.com/fxml"-->
+<!--      fx:controller="co.edu.uniquindio.clinica.controladores.ListaCitasControlador"-->
+<!--      prefHeight="400.0" prefWidth="600.0">-->
 
     <Label text="Lista de Citas" textFill="#0f0f0f">
         <font>
@@ -19,17 +21,21 @@
     </Label>
 
 
-    <TableView fx:id="tablaCitas" VBox.vgrow="ALWAYS" >
+    <TableView fx:id="tablaCitas" VBox.vgrow="ALWAYS">
         <columns>
-            <TableColumn text="Id" />
-            <TableColumn text="paciente" />
-            <TableColumn text="fecha"  />
-            <TableColumn text="service" />
-            <TableColumn text="factura" />
+            <TableColumn fx:id="colId" text="Id" />
+            <TableColumn fx:id="colPaciente" text="Paciente" />
+            <TableColumn fx:id="colFecha" text="Fecha" />
+            <TableColumn fx:id="colServicio" text="Servicio" />
+            <TableColumn fx:id="colFactura" text="Factura" />
         </columns>
-        <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-        </columnResizePolicy>
     </TableView>
+    <TextField fx:id="txtId" promptText="Cita Id" />
+    <TextField fx:id="txtPaciente" promptText="Nombre Paciente" />
+    <DatePicker fx:id="txtFecha" promptText="Fecha Cita" />
+    <ComboBox fx:id="txtServicio" promptText="Tipo de Servicio" />
+    <TextField fx:id="txtFactura" promptText="Factura" />
+
+    <Button text="Agregar Paciente" onAction="#cargarCitas"/>
 
 </VBox>
