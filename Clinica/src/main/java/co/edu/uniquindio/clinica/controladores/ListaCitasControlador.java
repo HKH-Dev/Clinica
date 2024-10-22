@@ -9,6 +9,7 @@ import co.edu.uniquindio.clinica.model.servicio.Servicio;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -56,11 +57,6 @@ public class ListaCitasControlador extends AbstractControlador implements Initia
     private final List<Node> camposDatos = new ArrayList<>();
     private Cita citaSeleccionada;
 
-    Paciente paciente = clinica.getListaPacientes()
-            .stream()
-            .filter(p -> p.getNombre().equals(txtPaciente.getText()))
-            .findFirst()
-            .orElse(null);  // Handle case where no matching patient is found
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         citaSeleccionada = tablaCitas.getSelectionModel().getSelectedItem();
@@ -69,6 +65,12 @@ public class ListaCitasControlador extends AbstractControlador implements Initia
         camposDatos.add(txtFecha);
         camposDatos.add(txtServicio);
         camposDatos.add(txtFactura);
+
+        Paciente paciente = clinica.getListaPacientes()
+                .stream()
+                .filter(p -> p.getNombre().equals(txtPaciente.getText()))
+                .findFirst()
+                .orElse(null);  // Handle case where no matching patient is found
 
         colId.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getId()));
         colPaciente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPaciente().getNombre()));
@@ -92,38 +94,6 @@ public class ListaCitasControlador extends AbstractControlador implements Initia
         selecionListener();
         tablaCitas.setItems(citasObservable);
     }
-//    @Override
-//    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        citaSeleccionada = tablaCitas.getSelectionModel().getSelectedItem();
-//        // Set nodes to Nodes list
-//        camposDatos.add(txtId);
-//        camposDatos.add(txtPaciente);
-//        camposDatos.add(txtFecha);
-//        camposDatos.add(txtServicio);
-//        camposDatos.add(txtFactura);
-//
-//        colId.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getId()));
-//        colPaciente.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPaciente().getNombre()));
-//        colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
-//        colFecha.setCellFactory(column -> new TableCell<Cita, LocalDate>() {
-//            private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//            @Override
-//            protected void updateItem(LocalDate date, boolean empty) {
-//                super.updateItem(date, empty);
-//                if (empty || date == null) {
-//                    setText(null);
-//                } else {
-//                    setText(date.format(formatter));
-//                }
-//            }
-//        });
-//        colServicio.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getServicio().getNombre()));
-//        colFactura.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFactura().getId()));
-//        citasObservable.addAll(clinica.getListaCitas());
-//        txtServicio.setItems(FXCollections.observableArrayList(clinica.getListaServiciosDisponibles()));
-//        selecionListener();
-//        tablaCitas.setItems(citasObservable);
-//    }
 
     private void actualizarTabla(){
         tablaCitas.refresh();
@@ -159,7 +129,18 @@ public class ListaCitasControlador extends AbstractControlador implements Initia
         }
         return true;
     }
-
+    @FXML
+    public void borrarCita(ActionEvent e){
+        try {
+            if(verificarSeleccionTabla()){
+                clinica.getListaCitas().remove(citaSeleccionada);
+                citasObservable.remove(citaSeleccionada);
+                limpiarCampos();
+                mostrarAlerta("Cita eliminada con Exito", Alert.AlertType.INFORMATION);
+                actualizarTabla();
+            }
+        }catch (Exception e1){mostrarAlerta(e1.getMessage(), Alert.AlertType.WARNING);}
+    }
 
     @FXML
     public void cargarCitas() {
@@ -211,6 +192,27 @@ public class ListaCitasControlador extends AbstractControlador implements Initia
         limpiarCampos();
     }
 
+    @FXML
+    public void actualizarCita(ActionEvent e){try {
+        if (verificarSeleccionTabla() && verificarCamposLlenos()){
+            for (Cita cita : clinica.getListaCitas()){
+                if (cita == tablaCitas.getSelectionModel().getSelectedItem()){
+                    cita.setId(txtId.getText());
+                    cita.setPaciente(clinica.getListaPacientes().stream().filter(p -> p.getNombre().equals(txtPaciente.getText())).findFirst().orElse(null));
+                    cita.setFecha(txtFecha.getValue());
+                    cita.setServicio((Servicio) txtServicio.getValue());
+                    cita.setFactura(clinica.getListaFacturas().stream().filter(f -> f.getId().equals(txtFactura.getText())).findFirst().orElse(null));
+                    limpiarCampos();
+                    tablaCitas.getSelectionModel().clearSelection();
+                    citaSeleccionada = null;
+                    actualizarTabla();
+                    mostrarAlerta("Cita actualizada con exito", Alert.AlertType.INFORMATION);
+                }
+            }
+        }}catch (Exception e2){
+            mostrarAlerta(e2.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
 
     private void mostrarAlerta(String mensaje, Alert.AlertType tipo){
         Alert alert = new Alert(tipo);

@@ -32,7 +32,6 @@ public class ListaPacientesControlador extends AbstractControlador implements In
     private TextField txtEmail;
     @FXML
     private ComboBox<TipoSuscripcion> txtSuscripcion;
-
     @FXML
     private TableView<Paciente> tablaPacientes;
     @FXML
@@ -52,6 +51,7 @@ public class ListaPacientesControlador extends AbstractControlador implements In
     private final ObservableList<Paciente> pacientesObservable = FXCollections.observableArrayList();
     private final List<Node>camposDatos = new ArrayList<>();
     private  Paciente pacienteSeleccionado;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         pacienteSeleccionado = tablaPacientes.getSelectionModel().getSelectedItem();

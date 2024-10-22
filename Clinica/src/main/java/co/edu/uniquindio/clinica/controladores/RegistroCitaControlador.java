@@ -44,7 +44,9 @@ public class RegistroCitaControlador extends AbstractControlador implements Init
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        var listadoServicios = clinica.getListaServiciosDisponibles();
+        List<Servicio> listadoServicios = clinica.getListaServiciosDisponibles();
+        System.out.println("Servicios disponibles: " + listadoServicios.size());
+
         if (listadoServicios != null) {
             txtServicio.setItems(FXCollections.observableArrayList(listadoServicios));
         } else {
