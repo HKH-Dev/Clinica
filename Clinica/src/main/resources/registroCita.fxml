@@ -22,7 +22,7 @@
     <DatePicker fx:id="txtFecha" layoutX="100.0" layoutY="130.0" minWidth="270.0" />
 
     <Label layoutX="27.0" layoutY="235.0" text="Tipo de Servicio:"/>
-    <ComboBox fx:id="txtServicio" layoutX="120.0" layoutY="80.0" minWidth="270.0" />
+    <ComboBox fx:id="comboServicios" layoutX="120.0" layoutY="80.0" minWidth="270.0" />
 
     <Label layoutX="27.0" layoutY="235.0" text="Factura:"/>
     <TextField fx:id="txtFactura" layoutX="100.0" layoutY="130.0" minWidth="270.0" />

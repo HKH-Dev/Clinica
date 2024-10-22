@@ -10,10 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 
 import java.net.URL;
@@ -32,9 +29,14 @@ public class RegistroCitaControlador extends AbstractControlador implements Init
     @FXML
     private DatePicker txtFecha; // Campo para seleccionar la fecha
     @FXML
-    private ComboBox<Servicio> txtServicio; // ComboBox para seleccionar servicios
+    private ComboBox<Servicio> comboServicios;  // ComboBox for displaying services
     @FXML
     private TextField txtFactura; // Campo para ingresar el ID de la factura
+
+    @FXML
+    public void initialize() {
+        comboServicios.getItems().addAll(clinica.getListaServiciosDisponibles());
+    }
 
     private final Clinica clinica;
 
@@ -44,16 +46,24 @@ public class RegistroCitaControlador extends AbstractControlador implements Init
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        comboServicios.getItems().addAll(clinica.getListaServiciosDisponibles());
+//        comboServicios.setPromptText("Seleccione un servicio");
         List<Servicio> listadoServicios = clinica.getListaServiciosDisponibles();
         System.out.println("Servicios disponibles: " + listadoServicios.size());
-
-        if (listadoServicios != null) {
-            txtServicio.setItems(FXCollections.observableArrayList(listadoServicios));
-        } else {
-            txtServicio.setItems(FXCollections.observableArrayList());
-        }
-        cambioIDListener(); // Establecer listener para el cambio de ID
+//
+        comboServicios.setCellFactory(listView -> new ListCell<Servicio>() {
+            @Override
+            protected void updateItem(Servicio servicio, boolean empty) {
+                super.updateItem(servicio, empty);
+                if (empty || servicio == null) {
+                    setText(null);
+                } else {
+                    setText(servicio.getNombre());  // Display the name of the service
+                }
+            }
+        });
     }
+
 
     public void registrarCita(ActionEvent e) {
         try {
@@ -65,13 +75,13 @@ public class RegistroCitaControlador extends AbstractControlador implements Init
 
             // Obtener los servicios seleccionados del ComboBox
             List<Servicio> serviciosSeleccionados = new ArrayList<>();
-            if (txtServicio.getValue() instanceof List<?>) {
-                for (Object servicioSeleccionado : (List<?>) txtServicio.getValue()) {
+            if (comboServicios.getValue() instanceof List<?>) {
+                for (Object servicioSeleccionado : (List<?>) comboServicios.getValue()) {
                     serviciosSeleccionados.add((Servicio) servicioSeleccionado);
                 }
             } else {
                 // Si solo se selecciona un servicio
-                serviciosSeleccionados.add((Servicio) txtServicio.getValue());
+                serviciosSeleccionados.add((Servicio) comboServicios.getValue());
             }
             if (serviciosSeleccionados.isEmpty()) {
                 throw new Exception("Debe seleccionar al menos un servicio.");
@@ -136,11 +146,11 @@ public class RegistroCitaControlador extends AbstractControlador implements Init
         return valorTotal;
     }
 
-    @Override
-    public void inicializarClinica(Clinica clinica) {
-        super.inicializarClinica(clinica);
-        System.out.println("RegistroPacienteControlador.inicializarClinica");
-    }
+//    @Override
+//    public void inicializarClinica(Clinica clinica) {
+//        super.inicializarDatosClinica(clinica);
+//        System.out.println("RegistroPacienteControlador.inicializarClinica");
+//    }
 
     private void mostrarAlerta(String mensaje, Alert.AlertType tipo) {
         Alert alert = new Alert(tipo);
@@ -153,7 +163,7 @@ public class RegistroCitaControlador extends AbstractControlador implements Init
     private void limpiarCampos() {
         txtPaciente.clear();
         txtFecha.setValue(null);
-        txtServicio.setValue(null);
+        comboServicios.setValue(null);
         txtFactura.clear();
     }
 }

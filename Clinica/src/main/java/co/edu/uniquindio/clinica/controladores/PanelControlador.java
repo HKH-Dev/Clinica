@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 
 public class PanelControlador {
+
     @FXML
     private StackPane panelPrincipal;
     private final Clinica clinica;

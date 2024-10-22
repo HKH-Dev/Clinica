@@ -41,11 +41,6 @@ public class Clinica {
         listaPacientes.add(paciente);
     }
 
-    public void  baseDatosPacientes(){
-        for(Paciente paciente: listaPacientes)
-            System.out.println(paciente);
-    }
-
 
     public void generarServicio(String id, String nombre, double precio, ComplejidadServicios complejidadServicios) throws Exception {
         boolean disponibilidad = RandomGenerator.getDefault().nextBoolean();
@@ -59,45 +54,68 @@ public class Clinica {
             throw new Exception("Servicio no disponible");
         }
     }
-    public void generarCita(String id, LocalDate fechaCita, Paciente paciente, Servicio servicio, Factura factura)throws Exception {
-        for (Cita disponibilidadCita : listaCitas) {
-            if (disponibilidadCita.getFecha().equals(fechaCita)) {
-                for (Paciente pacienteCita : listaPacientes) {
-                    if (disponibilidadCita.getPaciente().equals(pacienteCita)) {
-                        if (id != null && servicio != null && factura != null) {
-                            Cita cita = new Cita(paciente, id, fechaCita, servicio, factura);
-                            listaCitas.add(cita);
-                            System.out.println("Cita creada exitosamente: " + cita.toString());
-                        } else {
-                            throw new Exception("Cita no pudo ser creada");
-                        }
-                    } else {
-                        throw new Exception("Paciente ya cuenta con una cita en la fecha y hora seleccionada");
-                    }
-                }
-            }else{
-                throw new Exception("Fecha no disponible");
+//    public void generarCita(String id, LocalDate fechaCita, Paciente paciente, Servicio servicio, Factura factura)throws Exception {
+//        for (Cita disponibilidadCita : listaCitas) {
+//            if (disponibilidadCita.getFecha().equals(fechaCita)) {
+//                for (Paciente pacienteCita : listaPacientes) {
+//                    if (disponibilidadCita.getPaciente().equals(pacienteCita)) {
+//                        if (id != null && servicio != null && factura != null) {
+//                            Cita cita = new Cita(paciente, id, fechaCita, servicio, factura);
+//                            listaCitas.add(cita);
+//                            System.out.println("Cita creada exitosamente: " + cita.toString());
+//                        } else {
+//                            throw new Exception("Cita no pudo ser creada");
+//                        }
+//                    } else {
+//                        throw new Exception("Paciente ya cuenta con una cita en la fecha y hora seleccionada");
+//                    }
+//                }
+//            }else{
+//                throw new Exception("Fecha no disponible");
+//            }
+//        }
+//    }
+public void generarCita(String id, LocalDate fechaCita, Paciente paciente, Servicio servicio, Factura factura) throws Exception {
+    boolean fechaDisponible = true;
+    for (Cita disponibilidadCita : listaCitas) {
+        if (disponibilidadCita.getFecha().equals(fechaCita)) {
+            fechaDisponible = false;
+            if (disponibilidadCita.getPaciente().equals(paciente)) {
+                throw new Exception("Paciente ya cuenta con una cita en la fecha y hora seleccionada");
             }
         }
     }
-    public void cancelarCita(String CcPaciente, LocalDate fechaCita) throws Exception {
-        for (Paciente paciente : listaPacientes){
-            if(paciente.getCedula().equals(CcPaciente)){
-                for(Cita citaConsultar : listaCitas){
-                    if (citaConsultar.getPaciente().equals(paciente)){
-                        if(citaConsultar.getFecha().equals(fechaCita)){
-                        listaCitas.remove(citaConsultar);
-                        System.out.println("Cita cancelada exitosamente");
-                        }
-                    }else {
-                        throw new Exception("Cita no encontrada");
-                }
-            }
-        }else {
-            throw new Exception("Paciente no tiene citas programadas");
-            }
+    if (fechaDisponible) {
+        if (id != null && servicio != null && factura != null) {
+            Cita cita = new Cita(paciente, id, fechaCita, servicio, factura);
+            listaCitas.add(cita);
+            System.out.println("Cita creada exitosamente: " + cita.toString());
+        } else {
+            throw new Exception("Cita no pudo ser creada");
         }
+    } else {
+        throw new Exception("Fecha no disponible");
     }
+}
+
+//    public void cancelarCita(String CcPaciente, LocalDate fechaCita) throws Exception {
+//        for (Paciente paciente : listaPacientes){
+//            if(paciente.getCedula().equals(CcPaciente)){
+//                for(Cita citaConsultar : listaCitas){
+//                    if (citaConsultar.getPaciente().equals(paciente)){
+//                        if(citaConsultar.getFecha().equals(fechaCita)){
+//                        listaCitas.remove(citaConsultar);
+//                        System.out.println("Cita cancelada exitosamente");
+//                        }
+//                    }else {
+//                        throw new Exception("Cita no encontrada");
+//                }
+//            }
+//        }else {
+//            throw new Exception("Paciente no tiene citas programadas");
+//            }
+//        }
+//    }
 
     public void generarFactura(LocalDate fecha, String id, double subtotal, double valorTotal) throws Exception{
 

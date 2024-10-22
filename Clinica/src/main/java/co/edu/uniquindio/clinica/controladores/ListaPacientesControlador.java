@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 
 import java.net.URL;
@@ -52,8 +53,22 @@ public class ListaPacientesControlador extends AbstractControlador implements In
     private final List<Node>camposDatos = new ArrayList<>();
     private  Paciente pacienteSeleccionado;
 
+    public void inicializarClinica(Clinica clinica) {
+        colCedula.setCellValueFactory(new PropertyValueFactory<>("cedula"));
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        colSuscripcion.setCellValueFactory(new PropertyValueFactory<>("suscripcion"));
+
+        // Añadir los pacientes a la tabla
+//        tablaPacientes.getItems().addAll(clinica.getListaPacientes());
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Clinica clinica = Clinica.getInstance();
+        tablaPacientes.setItems(FXCollections.observableArrayList(clinica.getListaPacientes()));
+
         pacienteSeleccionado = tablaPacientes.getSelectionModel().getSelectedItem();
         // Set nodes to Nodes list
         camposDatos.add(txtNombre);

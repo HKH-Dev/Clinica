@@ -5,6 +5,7 @@ import co.edu.uniquindio.clinica.model.Clinica;
 import co.edu.uniquindio.clinica.model.Factura;
 import co.edu.uniquindio.clinica.model.Paciente;
 import co.edu.uniquindio.clinica.model.factory.TipoSuscripcion;
+import co.edu.uniquindio.clinica.model.servicio.ComplejidadServicios;
 import co.edu.uniquindio.clinica.model.servicio.Servicio;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -36,7 +37,7 @@ public class ListaCitasControlador extends AbstractControlador implements Initia
     @FXML
     private DatePicker txtFecha;
     @FXML
-    private ComboBox txtServicio;
+    private ComboBox<Servicio> txtServicio;
     @FXML
     private TextField txtFactura;
     @FXML
@@ -59,6 +60,9 @@ public class ListaCitasControlador extends AbstractControlador implements Initia
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Clinica clinica = Clinica.getInstance();
+        txtServicio.setItems(FXCollections.observableArrayList(clinica.getListaServiciosDisponibles()));
+
         citaSeleccionada = tablaCitas.getSelectionModel().getSelectedItem();
         camposDatos.add(txtId);
         camposDatos.add(txtPaciente);
