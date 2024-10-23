@@ -29,7 +29,10 @@
     <TextField fx:id="txtPaciente" promptText="Nombre Paciente" />
     <DatePicker fx:id="txtFecha" promptText="Fecha Cita" />
     <ComboBox fx:id="txtServicio" promptText="Tipo de Servicio" />
-    <TextField fx:id="txtFactura" promptText="Factura" />
+
+
+
+    <TextArea fx:id="txtFactura" promptText="Factura" />
 
     <Button text="Agregar Paciente" onAction="#cargarCitas"/>
     <Button fx:id="btnBorrarCita" mnemonicParsing="false" onAction="#borrarCita" text="Borrar Cita"/>

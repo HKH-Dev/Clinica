@@ -1,34 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.text.Text?>
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      spacing="20.0"
-      fx:controller="co.edu.uniquindio.clinica.controladores.RegistroCitaControlador">
+<!--    <ComboBox fx:id="comboServicios" layoutX="120.0" layoutY="80.0" minWidth="270.0" />-->
+<!--    <TextArea fx:id="txtDetalleServicio" layoutX="100.0" layoutY="130.0" prefHeight="100.0" prefWidth="270.0" />-->
+<!--    <Label layoutX="27.0" layoutY="135.0" text="Detalle Servicio:" />-->
+<!--    <TextArea fx:id="txtDetalleServicio" layoutX="100.0" layoutY="130.0" prefHeight="100.0" prefWidth="270.0" />-->
 
-    <Label layoutX="27.0" layoutY="35.0" text="Id:" />
-    <TextField fx:id="txtId" layoutX="100.0" layoutY="30.0" minWidth="270.0" />
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1125.0" prefWidth="1607.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.clinica.controladores.RegistroCitaControlador">
+
+    <Label layoutX="27.0" layoutY="35.0" prefWidth="285.0" text="Id:" />
+    <TextField fx:id="txtId" layoutX="100.0" layoutY="30.0" />
 
     <Label layoutX="27.0" layoutY="85.0" text="Paciente:" />
-    <TextField fx:id="txtPaciente" layoutX="100.0" layoutY="80.0" minWidth="270.0" editable="false"/>
+    <TextField fx:id="txtPaciente" editable="false" layoutX="100.0" layoutY="80.0" minWidth="270.0" />
 
     <Label layoutX="27.0" layoutY="135.0" text="Fecha:" />
     <DatePicker fx:id="txtFecha" layoutX="100.0" layoutY="130.0" minWidth="270.0" />
 
-    <Label layoutX="27.0" layoutY="235.0" text="Tipo de Servicio:"/>
+    <Label layoutX="27.0" layoutY="235.0" text="Tipo de Servicio:" />
     <ComboBox fx:id="comboServicios" layoutX="120.0" layoutY="80.0" minWidth="270.0" />
 
-    <Label layoutX="27.0" layoutY="235.0" text="Factura:"/>
-    <TextField fx:id="txtFactura" layoutX="100.0" layoutY="130.0" minWidth="270.0" />
+    <TextArea fx:id="txtDetalleServicio" layoutX="100.0" layoutY="130.0" prefHeight="100.0" prefWidth="270.0" />
 
-    <Button fx:id="btnNuevoCita" layoutX="150.0" layoutY="280.0" text="Crear nueva Cita" onAction="#registrarCita" />
+    <Button fx:id="btnCalcularFactura" onAction="#calcularFactura" text="Calcular Factura" />
 
-    <Button fx:id="btnGuardar" layoutX="250.0" layoutY="280.0" text="Guardar" />
+    <Label layoutX="27.0" layoutY="235.0" text="Factura:" />
+    <TextArea fx:id="txtFactura" layoutX="150.0" layoutY="280.0" minWidth="270.0" />
+
+    <Button fx:id="btnRegistrarCita" onAction="#registrarCita" text="Calcular Factura" />
+    <!--    <Button fx:id="btnNuevoCita" layoutX="150.0" layoutY="280.0" onAction="#registrarCita" text="Crear nueva Cita" />-->
+
+<!--    <Button fx:id="btnGuardar" layoutX="250.0" layoutY="280.0" text="Guardar" />-->
 
 </VBox>

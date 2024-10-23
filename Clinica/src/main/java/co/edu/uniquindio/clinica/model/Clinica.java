@@ -2,13 +2,13 @@ package co.edu.uniquindio.clinica.model;
 
 import co.edu.uniquindio.clinica.model.factory.TipoSuscripcion;
 import co.edu.uniquindio.clinica.model.servicio.ComplejidadServicios;
+import co.edu.uniquindio.clinica.model.servicio.CoverturaServicio;
 import co.edu.uniquindio.clinica.model.servicio.Servicio;
 import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.random.RandomGenerator;
 
 @Setter
 @Getter
@@ -43,38 +43,18 @@ public class Clinica {
 
 
     public void generarServicio(String id, String nombre, double precio, ComplejidadServicios complejidadServicios) throws Exception {
-        boolean disponibilidad = RandomGenerator.getDefault().nextBoolean();
-        if (disponibilidad){
-            if ( id != null && nombre != null && precio > 0) {
-                Servicio servicio = new Servicio(id, nombre, precio, complejidadServicios);
-                listaServiciosDisponibles.add(servicio);
-                System.out.println("Servicio creado: " + servicio.toString());
-            }
+        // Remove random availability check for service creation
+        boolean disponibilidad = true; // Set to true or handle availability separately
+        if (id != null && nombre != null && precio > 0) {
+            Servicio servicio = new Servicio(id, nombre, precio, complejidadServicios);
+            servicio.setDisponibilidad(disponibilidad); // Set availability here if needed
+            listaServiciosDisponibles.add(servicio);
+            System.out.println("Servicio creado: " + servicio.toString());
         } else {
-            throw new Exception("Servicio no disponible");
+            throw new Exception("Datos inválidos para el servicio.");
         }
     }
-//    public void generarCita(String id, LocalDate fechaCita, Paciente paciente, Servicio servicio, Factura factura)throws Exception {
-//        for (Cita disponibilidadCita : listaCitas) {
-//            if (disponibilidadCita.getFecha().equals(fechaCita)) {
-//                for (Paciente pacienteCita : listaPacientes) {
-//                    if (disponibilidadCita.getPaciente().equals(pacienteCita)) {
-//                        if (id != null && servicio != null && factura != null) {
-//                            Cita cita = new Cita(paciente, id, fechaCita, servicio, factura);
-//                            listaCitas.add(cita);
-//                            System.out.println("Cita creada exitosamente: " + cita.toString());
-//                        } else {
-//                            throw new Exception("Cita no pudo ser creada");
-//                        }
-//                    } else {
-//                        throw new Exception("Paciente ya cuenta con una cita en la fecha y hora seleccionada");
-//                    }
-//                }
-//            }else{
-//                throw new Exception("Fecha no disponible");
-//            }
-//        }
-//    }
+
 public void generarCita(String id, LocalDate fechaCita, Paciente paciente, Servicio servicio, Factura factura) throws Exception {
     boolean fechaDisponible = true;
     for (Cita disponibilidadCita : listaCitas) {
@@ -98,29 +78,11 @@ public void generarCita(String id, LocalDate fechaCita, Paciente paciente, Servi
     }
 }
 
-//    public void cancelarCita(String CcPaciente, LocalDate fechaCita) throws Exception {
-//        for (Paciente paciente : listaPacientes){
-//            if(paciente.getCedula().equals(CcPaciente)){
-//                for(Cita citaConsultar : listaCitas){
-//                    if (citaConsultar.getPaciente().equals(paciente)){
-//                        if(citaConsultar.getFecha().equals(fechaCita)){
-//                        listaCitas.remove(citaConsultar);
-//                        System.out.println("Cita cancelada exitosamente");
-//                        }
-//                    }else {
-//                        throw new Exception("Cita no encontrada");
-//                }
-//            }
-//        }else {
-//            throw new Exception("Paciente no tiene citas programadas");
-//            }
-//        }
-//    }
 
-    public void generarFactura(LocalDate fecha, String id, double subtotal, double valorTotal) throws Exception{
+    public void generarFactura(LocalDate fecha, String id, Paciente paciente, Servicio servicio, CoverturaServicio coverturaServicio, double valorTotal, double subtotal) throws Exception{
 
         if(fecha != null && id != null && valorTotal > 0 && subtotal > 0){
-            Factura factura = new Factura(fecha, id,subtotal, valorTotal);
+            Factura factura = new Factura(fecha, id, paciente, servicio, coverturaServicio, subtotal, valorTotal);
             System.out.println("Factura generada: " + factura.toString());
             listaFacturas.add(factura);
             System.out.println("Factura generada: " + factura.toString());
@@ -128,6 +90,4 @@ public void generarCita(String id, LocalDate fechaCita, Paciente paciente, Servi
             throw new Exception("Factura no generada");
         }
     }
-
-
 }

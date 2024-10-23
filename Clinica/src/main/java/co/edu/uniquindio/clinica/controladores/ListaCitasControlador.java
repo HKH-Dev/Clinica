@@ -39,7 +39,7 @@ public class ListaCitasControlador extends AbstractControlador implements Initia
     @FXML
     private ComboBox<Servicio> txtServicio;
     @FXML
-    private TextField txtFactura;
+    private TextArea txtFactura;
     @FXML
     private TableView<Cita> tablaCitas;
     @FXML
@@ -89,6 +89,16 @@ public class ListaCitasControlador extends AbstractControlador implements Initia
                 } else {
                     setText(date.format(formatter));
                 }
+            }
+        });
+        // Listener para mostrar los detalles de la factura en el TextArea
+        txtFactura.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                // Mostrar todos los detalles de la factura en el TextArea
+                txtFactura.setText(newValue);
+                System.out.println("Factura seleccionada: " + newValue);
+            } else {
+                txtFactura.clear(); // Limpiar el TextArea si no se selecciona una factura
             }
         });
         colServicio.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getServicio().getNombre()));
